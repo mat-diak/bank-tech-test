@@ -13,13 +13,17 @@ export class Account {
   deposit(amount) {
     this.#addToBalance(amount);
     this.statement.saveTransaction({
-      type: 'deposit',
-      amount: amount
-    })
+      type: "deposit",
+      amount: amount,
+    });
   }
 
   withdraw(amount) {
     this.#substractFromBalance(amount);
+    this.statement.saveTransaction({
+      type: "withdrawal",
+      amount: amount,
+    });
   }
 
   #addToBalance(amount) {
