@@ -1,6 +1,9 @@
+import { Statement } from "./statement";
+
 export class Account {
-  constructor() {
+  constructor(statement = new Statement()) {
     this.balance = 0;
+    this.statement = statement;
   }
 
   getBalance() {
@@ -8,18 +11,22 @@ export class Account {
   }
 
   deposit(amount) {
-    this.#addToBalance(amount)
+    this.#addToBalance(amount);
+    this.statement.saveTransaction({
+      type: 'deposit',
+      amount: amount
+    })
   }
 
   withdraw(amount) {
-    this.#substractFromBalance(amount)
+    this.#substractFromBalance(amount);
   }
 
   #addToBalance(amount) {
-    this.balance += amount
+    this.balance += amount;
   }
 
   #substractFromBalance(amount) {
-    this.balance -= amount
+    this.balance -= amount;
   }
 }
