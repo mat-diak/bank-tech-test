@@ -12,18 +12,12 @@ export class Account {
 
   deposit(amount) {
     this.#addToBalance(amount);
-    this.statement.saveTransaction({
-      type: "deposit",
-      amount: amount,
-    });
+    this.#saveToStatement('deposit', amount)
   }
 
   withdraw(amount) {
     this.#substractFromBalance(amount);
-    this.statement.saveTransaction({
-      type: "withdrawal",
-      amount: amount,
-    });
+    this.#saveToStatement('withdrawal', amount)
   }
 
   #addToBalance(amount) {
@@ -32,5 +26,12 @@ export class Account {
 
   #substractFromBalance(amount) {
     this.balance -= amount;
+  }
+
+  #saveToStatement(type, amount) {
+    this.statement.saveTransaction({
+      type: type,
+      amount: amount,
+    });
   }
 }
