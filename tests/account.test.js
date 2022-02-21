@@ -2,7 +2,7 @@ import { Account } from "../main/account.js";
 
 describe("Account", () => {
   let account;
-  beforeAll(() => {
+  beforeEach(() => {
     account = new Account();
   });
 
@@ -12,12 +12,20 @@ describe("Account", () => {
         expect(account.getBalance()).toEqual(0);
       });
     });
+  });
+  
+  describe("deposit", () => {
+    it("adds to balance", () => {
+      account.deposit(1000);
+      expect(account.getBalance()).toEqual(1000);
+    });
+  });
 
-    describe("deposit", () => {
-      it("adds to balance", () => {
-        account.deposit(1000);
-        expect(account.getBalance()).toEqual(1000);
-      });
+  describe('withdraw', () => {
+    it('substracts from balance', () => {
+      account.deposit(500)
+      account.withdraw(500)
+      expect(account.getBalance()).toEqual(0)
     });
   });
 });
