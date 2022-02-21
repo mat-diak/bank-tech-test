@@ -1,4 +1,4 @@
-const Statement = require("./statement.cjs");
+const Statement = require("./statement.js");
 
 class Account {
   constructor(statement = new Statement()) {

@@ -1,4 +1,4 @@
-const Statement = require("../main/statement.cjs");
+const Statement = require("../main/statement.js");
 
 describe("Statement", () => {
   let statement;

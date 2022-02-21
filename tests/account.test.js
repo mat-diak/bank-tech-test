@@ -1,6 +1,6 @@
-const Account = require("../main/account.cjs");
-const Statement = require("../main/statement.cjs");
-jest.mock("../main/statement.cjs");
+const Account = require("../main/account.js");
+const Statement = require("../main/statement.js");
+jest.mock("../main/statement.js");
 
 describe("Account", () => {
   let account;
