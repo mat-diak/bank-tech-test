@@ -1,4 +1,4 @@
-export class Statement {
+class Statement {
   constructor() {
     this.history = [];
   }
@@ -11,3 +11,5 @@ export class Statement {
     this.history.push(transactionData);
   }
 }
+
+module.exports = Statement;

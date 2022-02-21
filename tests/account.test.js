@@ -1,6 +1,6 @@
-import { Account } from "../main/account.js";
-import { Statement } from "../main/statement.js";
-jest.mock("../main/statement.js");
+const Account = require("../main/account.cjs");
+const Statement = require("../main/statement.cjs");
+jest.mock("../main/statement.cjs");
 
 describe("Account", () => {
   let account;

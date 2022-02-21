@@ -1,6 +1,6 @@
-import { Statement } from "./statement";
+const Statement = require("./statement.cjs");
 
-export class Account {
+class Account {
   constructor(statement = new Statement()) {
     this.balance = 0;
     this.statement = statement;
@@ -35,3 +35,5 @@ export class Account {
     });
   }
 }
+
+module.exports = Account;

@@ -1,4 +1,4 @@
-import { Statement } from "../main/statement.js";
+const Statement = require("../main/statement.cjs");
 
 describe("Statement", () => {
   let statement;
