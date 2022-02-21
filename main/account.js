@@ -8,10 +8,18 @@ export class Account {
   }
 
   deposit(amount) {
-    this.balance += amount;
+    this.#addToBalance(amount)
   }
 
   withdraw(amount) {
-    this.balance -= amount;
+    this.#substractFromBalance(amount)
+  }
+
+  #addToBalance(amount) {
+    this.balance += amount
+  }
+
+  #substractFromBalance(amount) {
+    this.balance -= amount
   }
 }
