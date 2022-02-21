@@ -1,13 +1,13 @@
 export class Account {
   constructor() {
-    this.balance = 0
+    this.balance = 0;
   }
-  
+
   getBalance() {
-    return this.balance
+    return this.balance;
   }
 
   deposit(amount) {
-    this.balance += amount
+    this.balance += amount;
   }
 }
