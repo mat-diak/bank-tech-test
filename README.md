@@ -61,20 +61,21 @@ undefined
 
 ## Approach:
 
+I started off with drafing the ideas for the classes and their responsibilites. I started with describing the Account class and added the functions to withdraw and deposit money. Secondly, I created a Statement class that stores all transaction data and formats the incoming data from Account class. StatementFormatter is resposible for producing a table for the statement. I tried to write the code, in such way, that it allows for future changes. The formatting should be relatively easy to change.
+
 ---
 
 The responsibilities are split between 3 classes:
 
-- Account - resposible for account operations, i.e. withdrawals and deposits
-- Statement - it formats the data and adds timestamps, stores transaction history
-- StatementFormatter - given transactions history from Statement, produces a table for the statement
+- Account - account operations
+- Statement - formats the data and adds timestamps, stores transaction history
+- StatementFormatter - produces a table representation of the statement
 
-The decision to structure the script, in such way, was to have a clear purpose for each component. 
+The decision to structure the script, in such way, was to have a clear purpose for each component. It also accommodates for adding further functionality. 
 
 ### Further extensions:
 - The validators which are now part of the Account class could be extracted to a separate class
-- An interfact class could be introduced to operate between all classes
-
+- An interface class could be introduced to operate all the classes 
 
 ## Edge cases considered:
 
