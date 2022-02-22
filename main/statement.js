@@ -7,7 +7,9 @@ class Statement {
   }
 
   print() {
-    console.log(this.statementFormatter.formatFullStatement(this.transactionHistory))
+    console.log(
+      this.statementFormatter.formatFullStatement(this.transactionHistory)
+    );
   }
 
   saveTransaction(type, amount, balance) {
@@ -15,7 +17,7 @@ class Statement {
       date: new Date(),
       type: type,
       amount: amount,
-      balance: balance
+      balance: balance,
     });
   }
 }

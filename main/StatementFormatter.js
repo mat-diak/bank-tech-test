@@ -1,10 +1,10 @@
 class StatementFormatter {
   formatFullStatement(data) {
-    let output = this.#formatTableHeader();
+    let output = [this.#formatTableHeader()]
     data.reverse().forEach((transactionData) => {
-      output += this.#formatRow(transactionData);
+      output.push(this.#formatRow(transactionData))
     });
-    return output;
+    return output.join('\n');
   }
 
   #formatTableHeader() {
@@ -12,9 +12,7 @@ class StatementFormatter {
   }
 
   #formatDate(date) {
-    return (
-      date.getDate() + "/" + date.getMonth() + 1 + "/" + date.getFullYear()
-    );
+    return date.toISOString().split("T")[0].split("-").reverse().join("/");
   }
 
   #formatNumber(number) {
@@ -22,22 +20,28 @@ class StatementFormatter {
   }
 
   #formatRow(transactionData) {
-    let output = "\n";
-    output += this.#formatDate(transactionData.date) + " || ";
-    output += this.#formatTransactionDetails(
-      transactionData.type,
-      transactionData.amount
+    const rowElements = [];
+    rowElements.push(
+      this.#formatDate(transactionData.date),
+      this.#formatCreditCol(
+        transactionData.type,
+        transactionData.amount
+      ),
+      this.#formatDebitCol(
+        transactionData.type,
+        transactionData.amount
+      ),
+      this.#formatNumber(transactionData.balance)
     );
-    output += this.#formatNumber(transactionData.balance);
-    return output;
+    return rowElements.join(" || ");
   }
 
-  #formatTransactionDetails(type, amount) {
-    if (type === "deposit") {
-      return amount.toFixed(2) + " || || ";
-    } else {
-      return "|| " + amount.toFixed(2) + " || ";
-    }
+  #formatCreditCol(type, amount) {
+    return type === "credit" ? this.#formatNumber(amount) : ""
+  }
+
+  #formatDebitCol(type, amount) {
+    return type === "debit" ? this.#formatNumber(amount) : ""
   }
 }
 

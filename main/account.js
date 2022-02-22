@@ -12,12 +12,12 @@ class Account {
 
   deposit(amount) {
     this.#addToBalance(amount);
-    this.statement.saveTransaction("deposit", amount, this.balance);
+    this.statement.saveTransaction("credit", amount, this.balance);
   }
 
   withdraw(amount) {
     this.#substractFromBalance(amount);
-    this.statement.saveTransaction("withdrawal", amount, this.balance);
+    this.statement.saveTransaction("debit", amount, this.balance);
   }
 
   #addToBalance(amount) {
