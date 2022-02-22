@@ -7,7 +7,7 @@ class Statement {
   }
 
   getTransactionHistory() {
-    return this.transactionHistory
+    return this.transactionHistory;
   }
 
   print() {

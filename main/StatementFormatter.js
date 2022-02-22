@@ -1,14 +1,15 @@
 class StatementFormatter {
+  
+  constructor() {
+    this.tableHeader = "date || credit || debit || balance"
+  }
+  
   formatFullStatement(data) {
-    let output = [this.#formatTableHeader()];
+    let output = [this.tableHeader];
     data.reverse().forEach((transactionData) => {
       output.push(this.#formatRow(transactionData));
     });
     return output.join("\n");
-  }
-
-  #formatTableHeader() {
-    return "date || credit || debit || balance";
   }
 
   #formatDate(date) {

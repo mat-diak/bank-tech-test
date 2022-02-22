@@ -34,9 +34,9 @@ describe("Account", () => {
       );
     });
 
-    describe('when given a negative integer', () => {
-      it('throws an error', () => {
-        expect(() => account.deposit(-100)).toThrow('Invalid input')
+    describe("when given a negative integer", () => {
+      it("throws an error", () => {
+        expect(() => account.deposit(-100)).toThrow("Invalid input");
       });
     });
   });
@@ -52,27 +52,23 @@ describe("Account", () => {
       const statement = new Statement();
       const acc = new Account(statement);
 
-      acc.deposit(1000)
+      acc.deposit(1000);
       acc.withdraw(999);
 
-      expect(statement.saveTransaction).toHaveBeenCalledWith(
-        "debit",
-        999,
-        1
-      );
+      expect(statement.saveTransaction).toHaveBeenCalledWith("debit", 999, 1);
     });
 
-    describe('when given a string', () => {
-      it('throws an error', () => {
-        expect(() => account.withdraw('£100')).toThrow('Invalid input')
+    describe("when given a string", () => {
+      it("throws an error", () => {
+        expect(() => account.withdraw("£100")).toThrow("Invalid input");
       });
     });
 
-    describe('when insufficient balance', () => {
-      it('throws an error', () => {
-        account.deposit(1)
+    describe("when insufficient balance", () => {
+      it("throws an error", () => {
+        account.deposit(1);
 
-        expect(() => account.withdraw(2)).toThrow('Insufficient balance')
+        expect(() => account.withdraw(2)).toThrow("Insufficient balance");
       });
     });
   });

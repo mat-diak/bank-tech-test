@@ -1,4 +1,5 @@
 const Statement = require("./statement.js");
+const Validator = require("./validator.js");
 
 class Account {
   constructor(statement = new Statement()) {
@@ -11,30 +12,22 @@ class Account {
   }
 
   deposit(amount) {
-    this.#validateInput(amount)
+    Validator.isValidInput(amount)
     this.#addToBalance(amount);
     this.statement.saveTransaction("credit", amount, this.balance);
   }
 
   withdraw(amount) {
-    this.#validateInput(amount)
-    this.#validateSufficientFunds(amount)
+    Validator.isValidInput(amount)
+    Validator.hasSufficientFunds(this.balance, amount)
     this.#substractFromBalance(amount);
     this.statement.saveTransaction("debit", amount, this.balance);
   }
-
-  #validateInput(input) {
-    if (!Number.isInteger(input) || input < 1) { throw 'Invalid input' }
-  }
-
-  #validateSufficientFunds(amount) {
-    if (amount > this.balance) { throw 'Insufficient balance' }
-  }
-
+  
   #addToBalance(amount) {
     this.balance += amount;
   }
-
+  
   #substractFromBalance(amount) {
     this.balance -= amount;
   }

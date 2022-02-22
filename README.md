@@ -8,13 +8,11 @@ yarn install
 
 ## To run (from project root dir):
 
-
 ```
 node -i -e "$(< index.js)"
 ```
 
 ## Running tests:
-
 
 ```
 yarn test
@@ -71,11 +69,12 @@ The responsibilities are split between 3 classes:
 - Statement - formats the data and adds timestamps, stores transaction history
 - StatementFormatter - produces a table representation of the statement
 
-The decision to structure the script, in such way, was to have a clear purpose for each component. It also accommodates for adding further functionality. 
+The decision to structure the script, in such way, was to have a clear purpose for each component. It also accommodates for adding further functionality.
 
 ### Further extensions:
+
 - The validators which are now part of the Account class could be extracted to a separate class
-- An interface class could be introduced to operate all the classes 
+- An interface class could be introduced to operate all the classes
 
 ## Edge cases considered:
 
