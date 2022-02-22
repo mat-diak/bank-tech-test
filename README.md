@@ -1,6 +1,6 @@
-## Before running:
+# Bank tech test
 
----
+## Before running:
 
 ```
 yarn install
@@ -8,7 +8,6 @@ yarn install
 
 ## To run (from project root dir):
 
----
 
 ```
 node -i -e "$(< index.js)"
@@ -16,7 +15,6 @@ node -i -e "$(< index.js)"
 
 ## Running tests:
 
----
 
 ```
 yarn test
@@ -68,10 +66,15 @@ undefined
 The responsibilities are split between 3 classes:
 
 - Account - resposible for account operations, i.e. withdrawals and deposits
-- Statement - slightly like a database, it formats the data and tracks the history of transactions, adds timestamps
+- Statement - it formats the data and adds timestamps, stores transaction history
 - StatementFormatter - given transactions history from Statement, produces a table for the statement
 
-The decision to structure the script, in such way, was to have a clear purpose for each component. Such division allows for adding up to the project. An additional divison could be introduced by implementing an interface through which user could access all functionality.
+The decision to structure the script, in such way, was to have a clear purpose for each component. 
+
+### Further extensions:
+- The validators which are now part of the Account class could be extracted to a separate class
+- An interfact class could be introduced to operate between all classes
+
 
 ## Edge cases considered:
 
