@@ -32,10 +32,7 @@ describe("Account", () => {
       const statement = new Statement();
       const acc = new Account(statement);
       acc.deposit(1000);
-      expect(statement.saveTransaction).toHaveBeenCalledWith({
-        type: "deposit",
-        amount: 1000,
-      });
+      expect(statement.saveTransaction).toHaveBeenCalledWith("deposit", 1000);
     });
   });
 
@@ -50,10 +47,7 @@ describe("Account", () => {
       const statement = new Statement();
       const acc = new Account(statement);
       acc.withdraw(999);
-      expect(statement.saveTransaction).toHaveBeenCalledWith({
-        type: "withdrawal",
-        amount: 999,
-      });
+      expect(statement.saveTransaction).toHaveBeenCalledWith("withdrawal", 999);
     });
   });
 });

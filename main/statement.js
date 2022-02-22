@@ -7,8 +7,11 @@ class Statement {
     return this.history;
   }
 
-  saveTransaction(transactionData) {
-    this.history.push(transactionData);
+  saveTransaction(type, amount) {
+    this.history.push({
+      type: type,
+      amount: amount,
+    });
   }
 }
 
