@@ -1,7 +1,9 @@
 class StatementFormatter {
   
   constructor() {
-    this.tableHeader = "date || credit || debit || balance"
+    this.divisor = " || "
+    this.headers = ['date', 'credit', 'debit', 'balance']
+    this.tableHeader = this.headers.join(this.divisor)
   }
   
   formatFullStatement(data) {
@@ -32,7 +34,7 @@ class StatementFormatter {
       this.#formatDebitCol(transactionData.type, transactionData.amount),
       this.#formatNumber(transactionData.balance)
     );
-    return rowElements.join(" || ");
+    return rowElements.join(this.divisor);
   }
 
   #formatCreditCol(type, amount) {
