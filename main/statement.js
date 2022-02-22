@@ -1,16 +1,21 @@
+const StatementFormatter = require("./StatementFormatter");
+
 class Statement {
-  constructor() {
-    this.history = [];
+  constructor(statement = new StatementFormatter()) {
+    this.transactionHistory = [];
+    this.statementFormatter = statement;
   }
 
-  getHistory() {
-    return this.history;
+  print() {
+    console.log(this.statementFormatter.formatFullStatement(this.transactionHistory))
   }
 
-  saveTransaction(type, amount) {
-    this.history.push({
+  saveTransaction(type, amount, balance) {
+    this.transactionHistory.push({
+      date: new Date(),
       type: type,
       amount: amount,
+      balance: balance
     });
   }
 }
