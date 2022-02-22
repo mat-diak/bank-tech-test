@@ -14,24 +14,19 @@ describe("Account", () => {
     });
   });
 
-  describe("getBalance", () => {
-    describe("when initialised", () => {
-      it("returns 0", () => {
-        expect(account.getBalance()).toEqual(0);
-      });
-    });
-  });
-
   describe("deposit", () => {
     it("adds to balance", () => {
       account.deposit(1000);
+
       expect(account.getBalance()).toEqual(1000);
     });
 
     it("calls saveTransaction on Statement", () => {
       const statement = new Statement();
       const acc = new Account(statement);
+
       acc.deposit(1000);
+
       expect(statement.saveTransaction).toHaveBeenCalledWith(
         "credit",
         1000,
@@ -56,8 +51,10 @@ describe("Account", () => {
     it("calls saveTransaction on Statement", () => {
       const statement = new Statement();
       const acc = new Account(statement);
+
       acc.deposit(1000)
       acc.withdraw(999);
+
       expect(statement.saveTransaction).toHaveBeenCalledWith(
         "debit",
         999,
@@ -74,6 +71,7 @@ describe("Account", () => {
     describe('when insufficient balance', () => {
       it('throws an error', () => {
         account.deposit(1)
+
         expect(() => account.withdraw(2)).toThrow('Insufficient balance')
       });
     });

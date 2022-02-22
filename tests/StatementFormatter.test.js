@@ -12,6 +12,7 @@ describe("StatementFormatter", () => {
           balance: 1000,
         },
       ];
+
       expect(statementFormatter.formatFullStatement(data)).toEqual(
         "date || credit || debit || balance\n10/01/2023 || 1000.00 ||  || 1000.00"
       );
@@ -33,6 +34,7 @@ describe("StatementFormatter", () => {
           balance: 1000,
         },
       ];
+      
       expect(statementFormatter.formatFullStatement(data)).toEqual(
         "date || credit || debit || balance\n10/01/2023 || 1000.00 ||  || 1000.00\n10/01/2023 ||  || 999.00 || 1.00"
       );

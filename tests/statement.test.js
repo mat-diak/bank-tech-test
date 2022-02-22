@@ -16,15 +16,15 @@ describe("Statement", () => {
   });
 
   describe("saveTransaction", () => {
-    it("saves a withdrawal", () => {
+    it("saves a transaction", () => {
       jest.useFakeTimers("modern");
       jest.setSystemTime(new Date(2022, 0, 1));
 
-      statement.saveTransaction("withdrawal", 500, 500);
+      statement.saveTransaction("transaction type", 500, 500);
 
-      expect(statement.transactionHistory).toContainEqual({
+      expect(statement.getTransactionHistory()).toContainEqual({
         date: new Date(),
-        type: "withdrawal",
+        type: "transaction type",
         amount: 500,
         balance: 500,
       });

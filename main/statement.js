@@ -6,6 +6,10 @@ class Statement {
     this.statementFormatter = statement;
   }
 
+  getTransactionHistory() {
+    return this.transactionHistory
+  }
+
   print() {
     console.log(
       this.statementFormatter.formatFullStatement(this.transactionHistory)
