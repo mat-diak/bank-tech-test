@@ -11,17 +11,23 @@ class Account {
   }
 
   deposit(amount) {
+    this.#validateInput(amount)
     this.#addToBalance(amount);
     this.statement.saveTransaction("credit", amount, this.balance);
   }
 
   withdraw(amount) {
+    this.#validateInput(amount)
     if (this.balance >= amount) {
         this.#substractFromBalance(amount);
         this.statement.saveTransaction("debit", amount, this.balance);
     } else {
       throw 'Insufficient balance'
     }
+  }
+
+  #validateInput(input) {
+    if (!Number.isInteger(input) || input < 1) { throw 'Invalid input' }
   }
 
   #addToBalance(amount) {

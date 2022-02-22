@@ -38,6 +38,12 @@ describe("Account", () => {
         1000
       );
     });
+
+    describe('when given a negative integer', () => {
+      it('throws an error', () => {
+        expect(() => account.deposit(-100)).toThrow('Invalid input')
+      });
+    });
   });
 
   describe("withdraw", () => {
@@ -57,6 +63,12 @@ describe("Account", () => {
         999,
         1
       );
+    });
+
+    describe('when given a string', () => {
+      it('throws an error', () => {
+        expect(() => account.withdraw('£100')).toThrow('Invalid input')
+      });
     });
 
     describe('when insufficient balance', () => {
