@@ -16,7 +16,7 @@ describe("Statement", () => {
 
   describe("saveTransaction", () => {
     it("saves a withdrawal", () => {
-      statement.saveTransaction('withdrawal', 500);
+      statement.saveTransaction("withdrawal", 500);
       expect(statement.getHistory()).toEqual([
         { type: "withdrawal", amount: 500 },
       ]);
