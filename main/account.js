@@ -18,16 +18,17 @@ class Account {
 
   withdraw(amount) {
     this.#validateInput(amount)
-    if (this.balance >= amount) {
-        this.#substractFromBalance(amount);
-        this.statement.saveTransaction("debit", amount, this.balance);
-    } else {
-      throw 'Insufficient balance'
-    }
+    this.#validateSufficientFunds(amount)
+    this.#substractFromBalance(amount);
+    this.statement.saveTransaction("debit", amount, this.balance);
   }
 
   #validateInput(input) {
     if (!Number.isInteger(input) || input < 1) { throw 'Invalid input' }
+  }
+
+  #validateSufficientFunds(amount) {
+    if (amount > this.balance) { throw 'Insufficient balance' }
   }
 
   #addToBalance(amount) {
