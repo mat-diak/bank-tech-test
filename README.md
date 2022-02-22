@@ -27,7 +27,7 @@ yarn test
 ---
 
 ```js
-➜  bank-tech-test git:(main) ✗ node -i -e "$(< index.js)"  
+➜  bank-tech-test git:(main) ✗ node -i -e "$(< index.js)"
 Welcome to Node.js v17.4.0.
 Type ".help" for more information.
 > acc = new Account();
@@ -50,7 +50,7 @@ date || credit || debit || balance
 22/02/2022 ||  || 70.00 || 30.00
 22/02/2022 || 100.00 ||  || 100.00
 undefined
-> 
+>
 ```
 
 ## Features:

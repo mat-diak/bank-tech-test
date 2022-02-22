@@ -16,8 +16,12 @@ class Account {
   }
 
   withdraw(amount) {
-    this.#substractFromBalance(amount);
-    this.statement.saveTransaction("debit", amount, this.balance);
+    if (this.balance >= amount) {
+        this.#substractFromBalance(amount);
+        this.statement.saveTransaction("debit", amount, this.balance);
+    } else {
+      throw 'Insufficient balance'
+    }
   }
 
   #addToBalance(amount) {

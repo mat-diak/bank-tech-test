@@ -9,7 +9,7 @@ describe("Account", () => {
   });
 
   describe("when initialised", () => {
-    it("creates a Statement", () => {
+    it("instantiates Statement", () => {
       expect(Statement).toHaveBeenCalledTimes(1);
     });
   });
@@ -50,12 +50,20 @@ describe("Account", () => {
     it("calls saveTransaction on Statement", () => {
       const statement = new Statement();
       const acc = new Account(statement);
+      acc.deposit(1000)
       acc.withdraw(999);
       expect(statement.saveTransaction).toHaveBeenCalledWith(
         "debit",
         999,
-        -999
+        1
       );
+    });
+
+    describe('when insufficient balance', () => {
+      it('throws an error', () => {
+        account.deposit(1)
+        expect(() => account.withdraw(2)).toThrow('Insufficient balance')
+      });
     });
   });
 });

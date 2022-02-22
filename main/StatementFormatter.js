@@ -1,10 +1,10 @@
 class StatementFormatter {
   formatFullStatement(data) {
-    let output = [this.#formatTableHeader()]
+    let output = [this.#formatTableHeader()];
     data.reverse().forEach((transactionData) => {
-      output.push(this.#formatRow(transactionData))
+      output.push(this.#formatRow(transactionData));
     });
-    return output.join('\n');
+    return output.join("\n");
   }
 
   #formatTableHeader() {
@@ -12,7 +12,11 @@ class StatementFormatter {
   }
 
   #formatDate(date) {
-    return date.toISOString().split("T")[0].split("-").reverse().join("/");
+    return date.toISOString()
+               .split("T")[0]
+               .split("-")
+               .reverse()
+               .join("/");
   }
 
   #formatNumber(number) {
@@ -23,25 +27,19 @@ class StatementFormatter {
     const rowElements = [];
     rowElements.push(
       this.#formatDate(transactionData.date),
-      this.#formatCreditCol(
-        transactionData.type,
-        transactionData.amount
-      ),
-      this.#formatDebitCol(
-        transactionData.type,
-        transactionData.amount
-      ),
+      this.#formatCreditCol(transactionData.type, transactionData.amount),
+      this.#formatDebitCol(transactionData.type, transactionData.amount),
       this.#formatNumber(transactionData.balance)
     );
     return rowElements.join(" || ");
   }
 
   #formatCreditCol(type, amount) {
-    return type === "credit" ? this.#formatNumber(amount) : ""
+    return type === "credit" ? this.#formatNumber(amount) : "";
   }
 
   #formatDebitCol(type, amount) {
-    return type === "debit" ? this.#formatNumber(amount) : ""
+    return type === "debit" ? this.#formatNumber(amount) : "";
   }
 }
 
