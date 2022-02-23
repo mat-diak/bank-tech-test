@@ -23,7 +23,7 @@ yarn test
 ---
 
 ```js
-➜  bank-tech-test git:(main) ✗ node -i -e "$(< index.js)"
+➜  bank-tech-test git:(main) ✗ node -i -e "$(< index.js)"  
 Welcome to Node.js v17.4.0.
 Type ".help" for more information.
 > acc = new Account();
@@ -31,22 +31,33 @@ Account {
   balance: 0,
   statement: Statement {
     transactionHistory: [],
-    statementFormatter: StatementFormatter {}
+    statementFormatter: StatementFormatter {
+      divisor: ' || ',
+      headers: [Array],
+      tableHeader: 'date || credit || debit || balance'
+    }
   }
 }
 > acc.deposit(100)
 undefined
-> acc.withdraw(70)
+> acc.withdraw(30)
 undefined
-> acc.withdraw(20)
+> acc.deposit('£100')
+Uncaught 'Invalid input'
+> acc.deposit(-100)
+Uncaught 'Invalid input'
+> acc.deposit(0)
+Uncaught 'Invalid input'
+> acc.withdraw(1000)
+Uncaught 'Insufficient balance'
+> acc.deposit(3000)
 undefined
 > acc.statement.print();
 date || credit || debit || balance
-22/02/2022 ||  || 20.00 || 10.00
-22/02/2022 ||  || 70.00 || 30.00
-22/02/2022 || 100.00 ||  || 100.00
+23/02/2022 || 3000.00 ||  || 3070.00
+23/02/2022 ||  || 30.00 || 70.00
+23/02/2022 || 100.00 ||  || 100.00
 undefined
->
 ```
 
 ## Features:
