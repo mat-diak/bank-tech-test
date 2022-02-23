@@ -1,10 +1,14 @@
 const Account = require("../main/account.js");
 const Statement = require("../main/statement.js");
+const Validator = require("../main/validator.js");
 jest.mock("../main/statement.js");
+jest.mock("../main/validator.js");
 
 describe("Account", () => {
   let account;
   beforeEach(() => {
+    Validator.isValidInput = jest.fn()
+    Validator.hasSufficientFunds = jest.fn()
     account = new Account();
   });
 
@@ -34,10 +38,9 @@ describe("Account", () => {
       );
     });
 
-    describe("when given a negative integer", () => {
-      it("throws an error", () => {
-        expect(() => account.deposit(-100)).toThrow("Invalid input");
-      });
+    it('validates input', () => {
+      account.deposit(1000)
+      expect(Validator.isValidInput).toHaveBeenCalledTimes(1)
     });
   });
 
@@ -58,18 +61,11 @@ describe("Account", () => {
       expect(statement.saveTransaction).toHaveBeenCalledWith("debit", 999, 1);
     });
 
-    describe("when given a string", () => {
-      it("throws an error", () => {
-        expect(() => account.withdraw("£100")).toThrow("Invalid input");
-      });
-    });
+    it('validates input and sufficient funds', () => {
+      account.withdraw(1000)
 
-    describe("when insufficient balance", () => {
-      it("throws an error", () => {
-        account.deposit(1);
-
-        expect(() => account.withdraw(2)).toThrow("Insufficient balance");
-      });
+      expect(Validator.isValidInput).toHaveBeenCalledTimes(1)
+      expect(Validator.hasSufficientFunds).toHaveBeenCalledTimes(1)
     });
   });
 });

@@ -4,7 +4,7 @@ class Validator {
       throw "Invalid input";
     }
   }
-  
+
   static hasSufficientFunds(balance, amount) {
     if (amount > balance) {
       throw "Insufficient balance";
@@ -12,9 +12,8 @@ class Validator {
   }
 
   static #isPositiveInteger(input) {
-    return !Number.isInteger(input) || input < 1
+    return !Number.isInteger(input) || input < 1;
   }
-
 }
 
 module.exports = Validator;

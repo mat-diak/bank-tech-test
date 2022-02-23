@@ -12,22 +12,22 @@ class Account {
   }
 
   deposit(amount) {
-    Validator.isValidInput(amount)
+    Validator.isValidInput(amount);
     this.#addToBalance(amount);
     this.statement.saveTransaction("credit", amount, this.balance);
   }
 
   withdraw(amount) {
-    Validator.isValidInput(amount)
-    Validator.hasSufficientFunds(this.balance, amount)
+    Validator.isValidInput(amount);
+    Validator.hasSufficientFunds(this.balance, amount);
     this.#substractFromBalance(amount);
     this.statement.saveTransaction("debit", amount, this.balance);
   }
-  
+
   #addToBalance(amount) {
     this.balance += amount;
   }
-  
+
   #substractFromBalance(amount) {
     this.balance -= amount;
   }

@@ -1,48 +1,41 @@
 class StatementFormatter {
-  
   constructor() {
-    this.divisor = " || "
-    this.headers = ['date', 'credit', 'debit', 'balance']
-    this.tableHeader = this.headers.join(this.divisor)
+    this.divisor = " || ";
+    this.headers = ["date", "credit", "debit", "balance"];
+    this.tableHeader = this.headers.join(this.divisor);
   }
-  
+
   formatFullStatement(data) {
-    let output = [this.tableHeader];
+    let rows = [this.tableHeader];
     data.reverse().forEach((transactionData) => {
-      output.push(this.#formatRow(transactionData));
+      rows.push(this.#formatRow(transactionData));
     });
-    return output.join("\n");
-  }
-
-  #formatDate(date) {
-    return date.toISOString()
-               .split("T")[0]
-               .split("-")
-               .reverse()
-               .join("/");
-  }
-
-  #formatNumber(number) {
-    return number.toFixed(2);
+    return rows.join("\n");
   }
 
   #formatRow(transactionData) {
     const rowElements = [];
-    rowElements.push(
+    return rowElements
+    .concat(
       this.#formatDate(transactionData.date),
-      this.#formatCreditCol(transactionData.type, transactionData.amount),
-      this.#formatDebitCol(transactionData.type, transactionData.amount),
-      this.#formatNumber(transactionData.balance)
-    );
-    return rowElements.join(this.divisor);
+      this.#formatTransaction(transactionData.type, transactionData.amount),
+      this.#formatAmount(transactionData.balance)
+      )
+      .join(this.divisor);
+    }
+    
+  #formatDate(date) {
+    return date.toISOString().split("T")[0].split("-").reverse().join("/");
   }
 
-  #formatCreditCol(type, amount) {
-    return type === "credit" ? this.#formatNumber(amount) : "";
+  #formatAmount(number) {
+    return number.toFixed(2);
   }
 
-  #formatDebitCol(type, amount) {
-    return type === "debit" ? this.#formatNumber(amount) : "";
+  #formatTransaction(type, amount) {
+    return type === "credit"
+      ? [this.#formatAmount(amount), ""]
+      : ["", this.#formatAmount(amount)];
   }
 }
 
