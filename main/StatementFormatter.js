@@ -16,16 +16,21 @@ class StatementFormatter {
   #formatRow(transactionData) {
     const rowElements = [];
     return rowElements
-    .concat(
-      this.#formatDate(transactionData.date),
-      this.#formatTransaction(transactionData.type, transactionData.amount),
-      this.#formatAmount(transactionData.balance)
+      .concat(
+        this.#formatDate(transactionData.date),
+        this.#formatTransaction(transactionData.type, transactionData.amount),
+        this.#formatAmount(transactionData.balance)
       )
       .join(this.divisor);
-    }
-    
+  }
+
   #formatDate(date) {
-    return date.toISOString().split("T")[0].split("-").reverse().join("/");
+    return date
+      .toISOString()
+      .split("T")[0]
+      .split("-")
+      .reverse()
+      .join("/");
   }
 
   #formatAmount(number) {
@@ -33,9 +38,11 @@ class StatementFormatter {
   }
 
   #formatTransaction(type, amount) {
-    return type === "credit"
-      ? [this.#formatAmount(amount), ""]
-      : ["", this.#formatAmount(amount)];
+    if (type === "credit") {
+      return [this.#formatAmount(amount), ""];
+    } else {
+      return ["", this.#formatAmount(amount)];
+    }
   }
 }
 

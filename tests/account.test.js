@@ -7,8 +7,6 @@ jest.mock("../main/validator.js");
 describe("Account", () => {
   let account;
   beforeEach(() => {
-    Validator.isValidInput = jest.fn()
-    Validator.hasSufficientFunds = jest.fn()
     account = new Account();
   });
 
@@ -38,9 +36,9 @@ describe("Account", () => {
       );
     });
 
-    it('validates input', () => {
-      account.deposit(1000)
-      expect(Validator.isValidInput).toHaveBeenCalledTimes(1)
+    it("validates input", () => {
+      account.deposit(1000);
+      expect(Validator.isValidInput).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -61,11 +59,11 @@ describe("Account", () => {
       expect(statement.saveTransaction).toHaveBeenCalledWith("debit", 999, 1);
     });
 
-    it('validates input and sufficient funds', () => {
-      account.withdraw(1000)
+    it("validates input and sufficient funds", () => {
+      account.withdraw(1000);
 
-      expect(Validator.isValidInput).toHaveBeenCalledTimes(1)
-      expect(Validator.hasSufficientFunds).toHaveBeenCalledTimes(1)
+      expect(Validator.isValidInput).toHaveBeenCalledTimes(1);
+      expect(Validator.hasSufficientFunds).toHaveBeenCalledTimes(1);
     });
   });
 });

@@ -23,7 +23,7 @@ yarn test
 ---
 
 ```js
-➜  bank-tech-test git:(main) ✗ node -i -e "$(< index.js)"  
+➜  bank-tech-test git:(main) ✗ node -i -e "$(< index.js)"
 Welcome to Node.js v17.4.0.
 Type ".help" for more information.
 > acc = new Account();
